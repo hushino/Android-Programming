@@ -1,30 +1,43 @@
 package com.redmagic.frost.prueba1;
 
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.WindowManager;
 
 import com.luolc.emojirain.EmojiRainLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     //private View btn;
-
+    protected WindowManager wm;
+    protected WindowManager.LayoutParams params;
     // son metodos diferentes para implementar el toast y demas
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        params = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT);
+
+        params.gravity = Gravity.NO_GRAVITY;
         // bind view
         EmojiRainLayout mContainer = findViewById(R.id.group_emoji_container);
 
-
+        //wm.setOutsideTouchable(true);
         // add emoji sources
         mContainer.addEmoji(R.drawable.emoji_1_3);
         mContainer.addEmoji(R.drawable.emoji_2_3);
         mContainer.addEmoji(R.drawable.emoji_3_3);
         mContainer.addEmoji(R.drawable.emoji_4_3);
         mContainer.addEmoji(R.drawable.emoji_5_3);
+
 
         // set emojis per flow, default 6
         mContainer.setPer(1);

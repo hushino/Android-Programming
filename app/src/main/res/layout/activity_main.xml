@@ -4,5 +4,6 @@
     android:id="@+id/group_emoji_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="visible"
-    tools:context="com.redmagic.frost.prueba1.MainActivity"></com.luolc.emojirain.EmojiRainLayout>
+    tools:context="com.redmagic.frost.prueba1.MainActivity">
+
+</com.luolc.emojirain.EmojiRainLayout>
