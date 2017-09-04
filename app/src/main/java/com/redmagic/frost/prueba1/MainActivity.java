@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.luolc.emojirain.EmojiRainLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button start, stop;
 
@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         start = findViewById(R.id.buttonStart);
         stop = findViewById(R.id.buttonStop);
 
-        start.setOnClickListener((View.OnClickListener) this);
-        stop.setOnClickListener((View.OnClickListener) this);
+        start.setOnClickListener(this);
+        stop.setOnClickListener(this);
 
         /*wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         params = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
     public void onClick(View view) {
         if (view == start) {
             startService(new Intent(this, MyService.class));
@@ -72,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             stopService(new Intent(this, MyService.class));
         }
     }
-
 }
 
         /*super.onCreate(savedInstanceState);
