@@ -1,36 +1,45 @@
 package com.redmagic.frost.prueba1;
 
-import android.graphics.PixelFormat;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.WindowManager;
+import android.view.View;
+import android.widget.Button;
 
 import com.luolc.emojirain.EmojiRainLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button start, stop;
+
     //private View btn;
-    protected WindowManager wm;
-    protected WindowManager.LayoutParams params;
+    // protected WindowManager wm;
+    //protected WindowManager.LayoutParams params;
     // son metodos diferentes para implementar el toast y demas
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        start = findViewById(R.id.buttonStart);
+        stop = findViewById(R.id.buttonStop);
 
-        wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        start.setOnClickListener((View.OnClickListener) this);
+        stop.setOnClickListener((View.OnClickListener) this);
+
+        /*wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         params = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
                 PixelFormat.TRANSLUCENT);
 
-        params.gravity = Gravity.NO_GRAVITY;
+        //wm.setOutsideTouchable(true);
+
+        params.gravity = Gravity.NO_GRAVITY;*/
         // bind view
         EmojiRainLayout mContainer = findViewById(R.id.group_emoji_container);
 
-        //wm.setOutsideTouchable(true);
+
         // add emoji sources
         mContainer.addEmoji(R.drawable.emoji_1_3);
         mContainer.addEmoji(R.drawable.emoji_2_3);
@@ -54,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
         mContainer.startDropping();
 
 
+    }
+
+    public void onClick(View view) {
+        if (view == start) {
+            startService(new Intent(this, MyService.class));
+        } else if (view == stop) {
+            stopService(new Intent(this, MyService.class));
+        }
     }
 
 }
